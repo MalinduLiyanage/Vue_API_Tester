@@ -1,0 +1,42 @@
+﻿import type {Reference} from "@/helpers/classes/dtos/openapi-version-3-0-x/common/reference.ts";
+import type {Discriminator} from "@/helpers/classes/dtos/openapi-version-3-0-x/schemas/discriminator.ts";
+import type {ExternalDocumentation} from "@/helpers/classes/dtos/openapi-version-3-0-x/common/externalDocumentation.ts";
+import type {XML} from "@/helpers/classes/dtos/openapi-version-3-0-x/schemas/xml.ts";
+
+export class Schema {
+  title?: string;
+  multipleOf?: number;
+  maximum?: number;
+  exclusiveMaximum?: boolean;
+  minimum?: number;
+  exclusiveMinimum?: boolean;
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
+  maxItems?: number;
+  minItems?: number;
+  uniqueItems?: boolean;
+  maxProperties?: number;
+  minProperties?: number;
+  required?: string[];
+  enum?: any[];
+  type?: 'string' | 'number' | 'integer' | 'boolean' | 'array' | 'object' | 'null';
+  allOf?: (Schema | Reference)[];
+  oneOf?: (Schema | Reference)[];
+  anyOf?: (Schema | Reference)[];
+  not?: Schema | Reference;
+  properties?: { [property: string]: Schema | Reference };
+  additionalProperties?: boolean | Schema | Reference;
+  items?: Schema | Reference;
+  format?: string;
+  nullable?: boolean;
+  discriminator?: Discriminator;
+  readOnly?: boolean;
+  writeOnly?: boolean;
+  xml?: XML;
+  externalDocs?: ExternalDocumentation;
+  example?: any;
+  deprecated?: boolean;
+  description?: string;
+  default?: any;
+}
