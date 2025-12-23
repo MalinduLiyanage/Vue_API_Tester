@@ -13,21 +13,20 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {OpenAPIDocument} from "@/helpers/classes/dtos/openapi-version-3-0-x/root/openAPIDocument.ts";
+import OpenApiUtil from "@/helpers/utils/openApiUtil.ts";
 
 export default defineComponent({
   name: "HomeView",
   data(){
     return{
       jsonObj: new OpenAPIDocument(),
-      jsonString: JSON.stringify(this.jsonObj, null, 2),
+      jsonString: OpenApiUtil.stringifyDocument(this.jsonObj),
     }
   },
   methods:{
     onJsonInput() {
       try {
-        const parsed = JSON.parse(this.jsonString)
-        this.jsonObj = Object.assign(new OpenAPIDocument(), parsed)
-        console.info(this.jsonObj)
+        console.info(OpenApiUtil.logInputDocument(this.jsonString))
       } catch (e) {
         console.warn('Invalid JSON input', e)
       }
