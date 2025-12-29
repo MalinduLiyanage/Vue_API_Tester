@@ -1,5 +1,5 @@
 ﻿<template>
-  <v-container>
+  <v-container v-if="pathItems.length === 0" fluid>
     <span>Paste Open API v3.0.x JSON</span>
     <v-textarea
       v-model="jsonString"
@@ -8,7 +8,8 @@
       rows="5"
     ></v-textarea>
   </v-container>
-  <v-btn @click="onJsonInput">OK</v-btn>
+  <v-btn v-if="pathItems.length === 0" @click="onJsonInput">OK</v-btn>
+  <v-btn v-else @click="pathItems.length = 0">Reset</v-btn>
   <ApiEndpointObject
     v-for="(item, index) in pathItems"
     :key="index"
